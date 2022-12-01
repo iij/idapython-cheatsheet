@@ -253,7 +253,7 @@ while(idx <= size):
 
 ### Type Libraryで定義した構造体のロード
 
-Type Libraryの読み込みには、`idc.add_default_til`メソッドが使えます。戻り値として、ロード済みかの真偽値を返します。`idc.import_type`メソッドを用いることで、Type Libraryにある構造体をロードすることができます。
+`idc.add_default_til`メソッドで、Type Libraryのロードをすることができます。戻り値として、ロード済みかの真偽値を返します。`idc.import_type`メソッドを用いることで、Type Libraryにある構造体をロードすることができます。
 
 ```python
 is_loaded = idc.add_default_til("ntapi64_win7")
