@@ -162,7 +162,7 @@ enum_member_name = idaapi.get_enum_member_name(enum_member_id)
 ```python
 ida_struct.add_struc(0, "my_structure")
 id = ida_struct.get_struc_id("my_structure")
-st =ida_struct.get_struc(id)
+st = ida_struct.get_struc(id)
 
 # オフセット0にDWORD型で "sample_member1" というメンバーを追加
 ida_struct.add_struc_member(st, "sample_member1", 0, idaapi.FF_DWORD, None, 4)
@@ -279,7 +279,7 @@ is_x64 = info.is_64bit()
 ## 困ったときは?
 
 冒頭で公式ドキュメントを紹介しましたが、メソッドの入出力やモジュールで使用可能なメソッドを調べる場合、検索が少々手間となる場合があります。  
-モジュールやメソッドの名称がすでにわかっているときは、IDA Proの下部に表示されている `Output` のコンソール上で `?` を使って検索しましょう。
+モジュールやメソッドの名称がすでにわかっているときは、IDA Proの下部に表示されている `Output` のコンソール上で `?` を使って検索しましょう。  
 例えば、`ida_funcs.get_func` メソッドの詳細な入出力を調査したい場合、以下のようにコンソール上で入力することで Help を簡単に表示させることができます。
 
 ```sh
