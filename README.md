@@ -11,6 +11,7 @@
 - [関数](#関数)
 - [相互参照機能](#相互参照機能)
 - [コメント](#コメント)
+- [色付け](#色付け)
 - [列挙型](#列挙型)
 - [構造体](#構造体)
 - [セグメント](#セグメント)
@@ -99,6 +100,15 @@ idc.set_cmt(ea, comment, is_repeatable)
 idc.get_cmt(ea, is_repeatable)
 idc.set_func_cmt(ea, comment, is_repeatable)
 idc.get_func_cmt(ea, is_repeatable)
+```
+
+## 色付け
+
+IDAでは、逆アセンブル画面などに対して、背景色の設定などが可能です。色付けする対象として、行、セグメント、関数レベルで行うことができます。`idc.set_color`メソッドの第2引数で色付けをする対象を指定します。第3引数で、色を指定します。背景色の取得には、`idc.get_color`メソッドが利用できます。
+
+```python
+idc.set_color(ea, idc.CIC_ITEM, 0xffff00)
+color = idc.get_color(ea, idc.CIC_ITEM)
 ```
 
 ## データ操作
