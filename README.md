@@ -251,6 +251,17 @@ while(idx <= size):
     idx = idx + member_size
 ```
 
+### Type Libraryで定義した構造体のロード
+
+Type Libraryの読み込みには、`idc.add_default_til`メソッドが使えます。戻り値として、ロード済みかの真偽値を返します。`idc.import_type`メソッドを用いることで、Type Libraryにある構造体をロードすることができます。
+
+```python
+is_loaded = idc.add_default_til("ntapi64_win7")
+if is_loaded:
+    idc.import_type(-1, "IMAGE_DOS_HEADER")
+    idc.import_type(-1, "IMAGE_NT_HEADERS64")
+```
+
 ## セグメント
 
 ```python
