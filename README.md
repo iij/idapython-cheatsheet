@@ -16,6 +16,7 @@
 - [セグメント](#セグメント)
 - [デバッガ](#デバッガ)
 - [実行ファイルの情報](#実行ファイルの情報)
+- [困ったときは?](#困ったときは?)
 
 ## アドレスの取得
 
@@ -159,6 +160,18 @@ enum_member_name = idaapi.get_enum_member_name(enum_member_id)
 `ida_struct` モジュールを利用することで構造体の操作ができます。
 
 #### 構造体の作成とメンバーの追加
+
+```c
+struct my_structure {
+    int sample_member1;
+    short sample_member2;
+    char sample_member3;
+    char sample_member[15];
+};
+```
+
+上記のような`my_structure`構造体を作成する場合、下記のようにして作成することができます。
+
 ```python
 ida_struct.add_struc(0, "my_structure")
 id = ida_struct.get_struc_id("my_structure")
@@ -166,10 +179,12 @@ st = ida_struct.get_struc(id)
 
 # オフセット0にDWORD型で "sample_member1" というメンバーを追加
 ida_struct.add_struc_member(st, "sample_member1", 0, idaapi.FF_DWORD, None, 4)
-# オフセット6にBYTE型で "sample_member2" というメンバーを追加
-ida_struct.add_struc_member(st, "sample_member2", 6, idaapi.FF_BYTE, None, 1)
-# 構造体の一番最後にBYTE型で15バイト分の配列を確保した "sample_member3" というメンバーを追加
-ida_struct.add_struc_member(st, "sample_member3", idaapi.BADADDR, idaapi.FF_BYTE, None, 15)
+# オフセット4にWORD型で "sample_member2" というメンバーを追加
+ida_struct.add_struc_member(st, "sample_member2", 4, idaapi.FF_WORD, None, 2)
+# オフセット6にBYTE型で "sample_member3" というメンバーを追加
+ida_struct.add_struc_member(st, "sample_member3", 6, idaapi.FF_BYTE, None, 1)
+# 構造体の一番最後にBYTE型で15バイト分の配列を確保した "sample_member4" というメンバーを追加
+ida_struct.add_struc_member(st, "sample_member4", idaapi.BADADDR, idaapi.FF_BYTE, None, 15)
 ```
 
 #### 構造体のメンバーの削除
@@ -186,7 +201,7 @@ ida_struct.del_struc_member(st, 6)
 ```python
 size: int = ida_struct.get_struc_qty()
 idx: int = ida_struct.get_first_struc_idx()
-for i in range(size):
+for _ in range(size):
     id: int = ida_struct.get_struc_by_idx(idx)
     name: str = ida_struct.get_struc_name(id)
     print(f"[{idx}]: struct_{hex(id)}: {name}")
