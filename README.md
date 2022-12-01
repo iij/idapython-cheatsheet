@@ -198,7 +198,7 @@ struct my_structure {
     int sample_member1;
     short sample_member2;
     char sample_member3;
-    char sample_member[15];
+    char sample_member4[15];
 };
 ```
 
