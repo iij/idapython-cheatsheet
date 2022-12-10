@@ -12,6 +12,7 @@
 - [関数](#関数)
 - [相互参照機能](#相互参照機能)
 - [コメント](#コメント)
+- [ブックマーク](#ブックマーク)
 - [色付け](#色付け)
 - [名前変更](#名前変更)
 - [列挙型](#列挙型)
@@ -114,6 +115,21 @@ idc.set_cmt(ea, comment, is_repeatable)
 idc.get_cmt(ea, is_repeatable)
 idc.set_func_cmt(ea, comment, is_repeatable)
 idc.get_func_cmt(ea, is_repeatable)
+```
+
+## ブックマーク
+
+IDA はWebブラウザのようにマークしたいアドレスにコメント付きのブックマークを設定することができます (`Alt + M`)。
+ブックマークの詳細は、`idc.get_bookmark`, `idc.get_bookmark_desc` のメソッドを使用することで取得することができます。
+以下のコードは、一覧と個々の詳細を取得するコードです。
+
+```python
+for i in range(1024):
+    addr: int = idc.get_bookmark(i)
+    if addr == 0xffffffff:
+        break
+    cmt:str = idc.get_bookmark_desc(i)
+    print(f"[{hex(addr)}]: {cmt}")
 ```
 
 ## 色付け
